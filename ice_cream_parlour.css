@@ -1,3 +1,20 @@
 body {
 	background: forestgreen;
 }
+
+.cone {
+	/*fill: grey;*/
+	/*stroke: grey;*/
+}
+
+.scoop {
+	fill: pink;
+}
+
+.sauce {
+	stroke: red;
+}
+
+.sprinkles {
+	stroke: purple;
+}
