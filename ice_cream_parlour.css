@@ -12,7 +12,8 @@ body {
 }
 
 .sauce {
-	stroke: red;
+	opacity: 0.6;
+	stroke-width: 1px;
 }
 
 .sprinkles {
