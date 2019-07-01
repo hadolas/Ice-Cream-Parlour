@@ -1,5 +1,6 @@
 body {
 	background: forestgreen;
+	font-family: 'Press Start 2P';
 }
 
 .cone {
@@ -19,3 +20,119 @@ body {
 .sprinkles {
 	stroke: purple;
 }
+
+/* General Styles */
+h1 {
+	text-align: center;
+}
+
+/* 
+	Main Container
+*/
+.main_container {
+	border: 2px solid navy;
+	display: flex;
+}
+
+.main_container svg {
+	width: 50%;
+}
+
+.right_panel {
+	background: purple;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	line-height: 1.5em;
+	font-size: 0.8em;
+}
+
+.right_panel .info_box {
+	color: yellow;
+	padding: 10px;
+}
+
+/*
+	Control Panel / Interaction
+*/
+.control_panel {
+	background: orange;
+	height: 100%;
+	padding: 10px;
+}
+
+.control_panel_options {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.button {
+	background: lightblue;
+	margin: 5px;
+	padding: 5px;
+	flex: 100px 0 0;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.button:hover {
+	opacity: 0.8;
+}
+
+/*
+	Scoop Flavours
+*/
+/*
+	VANILLA:	#f7f5dc, #f4f0b2
+	MINT: 		#c7f9c9, #add8ae
+	CHOCOLATE:	#6b2c13, #592410
+	BUBBLEGUM:	#71d0ed, #68bed8
+	STRAWBERRY:	#f7a7a5, #e29998
+	RASPBERRY:	#f2a7da, #e59ecd
+	COFFEE:		#b5867b. #a57b70
+	LEMON:		#f8f9c5, #f2f4b5
+	CHERRY:		#f9989a, #dd898a
+	FUDGE:		#e8bb92, #ddb289
+*/
+
+.vanilla {
+	fill: #f7f5dc;
+}
+.vanilla + .bottom {
+	fill: #f4f0b2;
+}
+
+.mint {
+	fill: #c7f9c9;
+}
+.mint + .bottom {
+	fill: #add8ae;
+}
+
+.chocolate {
+	fill: #6b2c13;
+}
+.chocolate + .bottom {
+	fill: #592410;
+}
+
+.bubblegum {
+	fill: #71d0ed;
+}
+.bubblegum + .bottom {
+	fill: #68bed8;
+}
+
+.strawberry {
+	fill: #f7a7a5;
+}
+.strawberry + .bottom {
+	fill: #e29998;
+}
+
+
+
+
