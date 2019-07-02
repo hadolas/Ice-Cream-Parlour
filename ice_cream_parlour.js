@@ -13,8 +13,9 @@ for(var i=0; i<sprinkles_length; i++) {
 // Right Panel content
 var info_box = document.querySelector(".info_box");
 var control_panel_options = document.querySelector(".control_panel_options");
+var done_button = document.querySelector(".done");
 
-// Choose Scoops
+// PART 1: Choose Scoops
 info_box.textContent = "Welcome to <name>! Which scoops of ice cream would you like? Choose up to 3!";
 
 var scoop_flavours = ["vanilla", "mint", "chocolate", "bubblegum", "strawberry"];
@@ -48,9 +49,29 @@ control_panel_options.addEventListener("click", function(event) {
 				scoop_3.style.display = "inline";
 				scoop_3.nextElementSibling.style.display = "inline";
 				scoop_3.classList.add(picked.textContent);
+				clear_control_panel_options();
 			}
-			scoop_number++;
+			scoop_number++
 		}
 	}
-	
 });
+
+// Clear the control_panel_options when 'Next'/'Done' button is clicked
+var control_panel_options_buttons = document.querySelectorAll(".control_panel_options .button");
+var control_panel_options_buttons_length = control_panel_options_buttons.length;
+
+function clear_control_panel_options() {
+	for(var i=0; i<control_panel_options_buttons_length; i++) {
+		control_panel_options_buttons[i].parentNode.removeChild(control_panel_options_buttons[i]);
+	}
+}
+
+done_button.addEventListener("click", function() {
+	if(scoop_number<2) {
+		return;
+	} else {
+		clear_control_panel_options();
+	}
+});
+
+
