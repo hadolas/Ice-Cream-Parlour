@@ -133,6 +133,9 @@ h1 {
 	fill: #e29998;
 }
 
-
-
-
+/*
+	Scoop Control
+*/
+.scoop, .bottom {
+	display: none;
+}

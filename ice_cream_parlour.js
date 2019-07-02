@@ -27,18 +27,30 @@ for(var i=0; i<scoop_flavours_length; i++) {
 	control_panel_options.appendChild(scoop_option);
 }
 
-var scoop_one = document.querySelector(".scoop_one");
-var options = document.addEventListener("click", function(event) {
-	// console.log(event.target.className === "button");
-	if(event.target.className === "button") {
-		var picked = event.target
-		// console.log(event.target.textContent);
-		// console.log(event)
-		// console.log(scoop_flavours.indexOf(event.target.textContent));
-		console.log(picked);
-		// picked.classList.add(event.target.textContent);
-		// picked.classList.add("mint");
-		scoop_one.classList.add(picked.textContent);
-		console.log(event);
+var scoop_number = 1;
+var scoop_1 = document.querySelector(".scoop_one");
+var scoop_2 = document.querySelector(".scoop_two");
+var scoop_3 = document.querySelector(".scoop_three");
+
+control_panel_options.addEventListener("click", function(event) {
+	if(scoop_number <= 3) {
+		if(event.target.className === "button") {
+			var picked = event.target;
+			if(scoop_number===1) {
+				scoop_1.style.display = "inline";
+				scoop_1.nextElementSibling.style.display = "inline";
+				scoop_1.classList.add(picked.textContent);
+			} else if(scoop_number===2) {
+				scoop_2.style.display = "inline";
+				scoop_2.nextElementSibling.style.display = "inline";
+				scoop_2.classList.add(picked.textContent);
+			} else {
+				scoop_3.style.display = "inline";
+				scoop_3.nextElementSibling.style.display = "inline";
+				scoop_3.classList.add(picked.textContent);
+			}
+			scoop_number++;
+		}
 	}
+	
 });
