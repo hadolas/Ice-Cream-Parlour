@@ -3,14 +3,6 @@ var colours = ["#e0768d", "#f4c046", "#edf254", "#b5f254", "#54f2c5", "#54d5f2",
 var randomNum;
 var part = 1;
 
-var sprinkles = document.querySelectorAll(".sprinkles path");
-var sprinkles_length = sprinkles.length;
-
-for(var i=0; i<sprinkles_length; i++) {
-	randomNum = (Math.floor(Math.random()*10));
-	sprinkles[i].style.stroke=colours[randomNum];
-}
-
 // Right Panel content
 var info_box = document.querySelector(".info_box");
 var control_panel_options = document.querySelector(".control_panel_options");
@@ -21,8 +13,8 @@ var scoop_flavours = ["vanilla", "mint", "chocolate", "bubblegum", "strawberry"]
 var scoop_flavours_length = scoop_flavours.length;
 var sauce_flavours = ["chocolate", "strawberry", "raspberry", "fudge"];
 var sauce_flavours_length = sauce_flavours.length;
-
-
+var sprinkles_options = ["Yes", "No"];
+var sprinkles_options_length = sprinkles_options.length;
 
 select_part();
 
@@ -61,6 +53,25 @@ control_panel_options.addEventListener("click", function(event) {
 				sauce.style.transform = "translateY(17.5px)";
 			}
 			clear_control_panel_options();	
+		} else if (part===3) {
+			var picked_option = event.target;
+			if(picked_option.textContent==="Yes") {
+				var sprinkles = document.querySelectorAll(".sprinkles path");
+				var sprinkles_length = sprinkles.length;
+				var sprinkles_group = document.querySelector(".sprinkles");
+				sprinkles_group.style.display = "inline"
+				for(var i=0; i<sprinkles_length; i++) {
+					randomNum = (Math.floor(Math.random()*10));
+					sprinkles[i].style.stroke = colours[randomNum];
+				}
+				if(scoop_number===2){
+					sprinkles_group.style.transform = "translateY(35px)";
+				} else if (scoop_number===3) {
+					sprinkles_group.style.transform = "translateY(17.5px)";
+				}
+			} else if (picked_option.textContent==="No") {
+				console.log("No sprinkles :(")
+			}
 		}
 	}
 });
@@ -102,6 +113,14 @@ function select_part() {
 			sauce_option.classList.add("button");
 			sauce_option.textContent = sauce_flavours[i];
 			control_panel_options.appendChild(sauce_option);
+		}
+	} else if(part===3) {
+		info_box.textContent = "Top with sprinkles?";
+		for(var i=0; i<sprinkles_options_length; i++) {
+			var sprinkles_option = document.createElement("div");
+			sprinkles_option.classList.add("button");
+			sprinkles_option.textContent = sprinkles_options[i];
+			control_panel_options.appendChild(sprinkles_option);
 		}
 	}
 }

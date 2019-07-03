@@ -13,7 +13,7 @@ body {
 }
 
 .sprinkles {
-	stroke: purple;
+	display: none;
 }
 
 /* General Styles */
