@@ -1,6 +1,7 @@
 // Give sprinkles random colours
 var colours = ["#e0768d", "#f4c046", "#edf254", "#b5f254", "#54f2c5", "#54d5f2", "#9086ef","#e49ef7", "#ea62e1", "#62d3ea"];
 var randomNum;
+var part = 1;
 
 var sprinkles = document.querySelectorAll(".sprinkles path");
 var sprinkles_length = sprinkles.length;
@@ -15,55 +16,62 @@ var info_box = document.querySelector(".info_box");
 var control_panel_options = document.querySelector(".control_panel_options");
 var done_button = document.querySelector(".done");
 
-// PART 1: Choose Scoops
-info_box.textContent = "Welcome to <name>! Which scoops of ice cream would you like? Choose up to 3!";
-
+// Available Flavours
 var scoop_flavours = ["vanilla", "mint", "chocolate", "bubblegum", "strawberry"];
 var scoop_flavours_length = scoop_flavours.length;
+var sauce_flavours = ["chocolate", "strawberry", "raspberry", "fudge"];
+var sauce_flavours_length = sauce_flavours.length;
 
-for(var i=0; i<scoop_flavours_length; i++) {
-	var scoop_option = document.createElement("div");
-	scoop_option.classList.add("button");
-	scoop_option.textContent = scoop_flavours[i];
-	control_panel_options.appendChild(scoop_option);
-}
+
+
+select_part();
 
 var scoop_number = 1;
 var scoop_1 = document.querySelector(".scoop_one");
 var scoop_2 = document.querySelector(".scoop_two");
 var scoop_3 = document.querySelector(".scoop_three");
+var sauce = document.querySelector(".sauce");
 
 control_panel_options.addEventListener("click", function(event) {
-	if(scoop_number <= 3) {
-		if(event.target.className === "button") {
-			var picked = event.target;
+	if(event.target.className === "button") {
+		if(part===1 && scoop_number <= 3) {
+			var picked_scoop = event.target;
 			if(scoop_number===1) {
 				scoop_1.style.display = "inline";
 				scoop_1.nextElementSibling.style.display = "inline";
-				scoop_1.classList.add(picked.textContent);
+				scoop_1.classList.add(picked_scoop.textContent);
 			} else if(scoop_number===2) {
 				scoop_2.style.display = "inline";
 				scoop_2.nextElementSibling.style.display = "inline";
-				scoop_2.classList.add(picked.textContent);
+				scoop_2.classList.add(picked_scoop.textContent);
 			} else {
 				scoop_3.style.display = "inline";
 				scoop_3.nextElementSibling.style.display = "inline";
-				scoop_3.classList.add(picked.textContent);
+				scoop_3.classList.add(picked_scoop.textContent);
 				clear_control_panel_options();
 			}
 			scoop_number++
+		} else if (part===2) {
+			var picked_sauce = event.target;
+			sauce.style.display = "inline";
+			// console.log(picked_sauce)
+			sauce.classList.add(picked_sauce.textContent);
+			// clear_control_panel_options();
+			// console.log(control_panel_options);
+			clear_control_panel_options();	
 		}
 	}
 });
 
 // Clear the control_panel_options when 'Next'/'Done' button is clicked
-var control_panel_options_buttons = document.querySelectorAll(".control_panel_options .button");
-var control_panel_options_buttons_length = control_panel_options_buttons.length;
-
 function clear_control_panel_options() {
+	var control_panel_options_buttons = document.querySelectorAll(".control_panel_options .button");
+	var control_panel_options_buttons_length = control_panel_options_buttons.length;
 	for(var i=0; i<control_panel_options_buttons_length; i++) {
 		control_panel_options_buttons[i].parentNode.removeChild(control_panel_options_buttons[i]);
 	}
+	part+=1;
+	select_part();
 }
 
 done_button.addEventListener("click", function() {
@@ -75,3 +83,23 @@ done_button.addEventListener("click", function() {
 });
 
 
+// PART SELECTION
+function select_part() {
+	if(part===1) {
+		info_box.textContent = "Welcome to <name>! Which scoops of ice cream would you like? Choose up to 3!";
+		for(var i=0; i<scoop_flavours_length; i++) {
+			var scoop_option = document.createElement("div");
+			scoop_option.classList.add("button");
+			scoop_option.textContent = scoop_flavours[i];
+			control_panel_options.appendChild(scoop_option);
+		}
+	} else if(part===2) {
+		info_box.textContent = "Choose a sauce!";
+		for(var i=0; i<sauce_flavours_length; i++) {
+			var sauce_option = document.createElement("div");
+			sauce_option.classList.add("button");
+			sauce_option.textContent = sauce_flavours[i];
+			control_panel_options.appendChild(sauce_option);
+		}
+	}
+}

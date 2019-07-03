@@ -12,11 +12,6 @@ body {
 	fill: pink;
 }
 
-.sauce {
-	opacity: 0.6;
-	stroke-width: 1px;
-}
-
 .sprinkles {
 	stroke: purple;
 }
@@ -98,38 +93,38 @@ h1 {
 	FUDGE:		#e8bb92, #ddb289
 */
 
-.vanilla {
+.scoop.vanilla {
 	fill: #f7f5dc;
 }
-.vanilla + .bottom {
+.scoop.vanilla + .bottom {
 	fill: #f4f0b2;
 }
 
-.mint {
+.scoop.mint {
 	fill: #c7f9c9;
 }
-.mint + .bottom {
+.scoop.mint + .bottom {
 	fill: #add8ae;
 }
 
-.chocolate {
+.scoop.chocolate {
 	fill: #6b2c13;
 }
-.chocolate + .bottom {
+.scoop.chocolate + .bottom {
 	fill: #592410;
 }
 
-.bubblegum {
+.scoop.bubblegum {
 	fill: #71d0ed;
 }
-.bubblegum + .bottom {
+.scoop.bubblegum + .bottom {
 	fill: #68bed8;
 }
 
-.strawberry {
+.scoop.strawberry {
 	fill: #f7a7a5;
 }
-.strawberry + .bottom {
+.scoop.strawberry + .bottom {
 	fill: #e29998;
 }
 
@@ -138,4 +133,30 @@ h1 {
 */
 .scoop, .bottom {
 	display: none;
+}
+
+/*
+	Sauce
+*/
+.sauce {
+	opacity: 0.7;
+	stroke-width: 1px;
+	display: none;
+}
+
+.sauce.chocolate {
+	stroke: #4c0303;
+}
+
+.sauce.strawberry {
+	/*stroke: red;*/
+	stroke: #fc0202;
+}
+
+.sauce.raspberry {
+	stroke: #fc027f;
+}
+
+.sauce.fudge {
+	stroke: #fc7f02;
 }
