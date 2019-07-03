@@ -54,10 +54,12 @@ control_panel_options.addEventListener("click", function(event) {
 		} else if (part===2) {
 			var picked_sauce = event.target;
 			sauce.style.display = "inline";
-			// console.log(picked_sauce)
 			sauce.classList.add(picked_sauce.textContent);
-			// clear_control_panel_options();
-			// console.log(control_panel_options);
+			if(scoop_number===2){
+				sauce.style.transform = "translateY(35px)";
+			} else if (scoop_number===3) {
+				sauce.style.transform = "translateY(17.5px)";
+			}
 			clear_control_panel_options();	
 		}
 	}
