@@ -1,68 +1,21 @@
-body {
-	background: forestgreen;
-	font-family: 'Press Start 2P';
-}
-
-.cone {
-	/*fill: grey;*/
-	/*stroke: grey;*/
-}
-
-.scoop {
-	fill: pink;
-}
-
-.sprinkles {
-	display: none;
-}
-
 /* General Styles */
+body {
+	margin: 0;
+	font-family: "Chelsea Market";
+	background: #ededed;
+}
+
 h1 {
+	font-family: 'Mystery Quest';
 	text-align: center;
-}
-
-/* 
-	Main Container
-*/
-.main_container {
-	border: 2px solid navy;
-	display: flex;
-}
-
-.main_container svg {
-	width: 50%;
-}
-
-.right_panel {
-	background: purple;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	line-height: 1.5em;
-	font-size: 0.8em;
-}
-
-.right_panel .info_box {
-	color: yellow;
-	padding: 10px;
-}
-
-/*
-	Control Panel / Interaction
-*/
-.control_panel {
-	background: orange;
-	height: 100%;
-	padding: 10px;
-}
-
-.control_panel_options {
-	display: flex;
-	flex-wrap: wrap;
+	margin: 0;
+	padding-top: 20px
 }
 
 .button {
-	background: lightblue;
+	font-family: "MV Boli";
+	text-transform: capitalize;
+	background: #fff;
 	margin: 5px;
 	padding: 5px;
 	flex: 100px 0 0;
@@ -77,21 +30,117 @@ h1 {
 	opacity: 0.8;
 }
 
-/*
-	Scoop Flavours
+.button:active {
+	opacity: 0.5;
+}
+
+
+/* Background Styles */
+.background {
+	background: red;
+	width: 100%;
+	height: 100vh;
+	background-size:400% 400%;
+	background-image: repeating-linear-gradient(45deg, #ff7272, #ff7272 0.5%, #fff 0.5%, #fff 1%);
+	animation: movingStripes 240s infinite;
+	z-index: -2;
+	position: absolute;
+}
+
+@keyframes movingStripes {
+	0% {
+		background-position: 0 50%;
+	}
+	50% {
+		background-position: 100% 50%;	
+	}
+	100% {
+		background-position: 0 50%;
+	}
+}
+
+/* 
+	Container Styles
 */
-/*
-	VANILLA:	#f7f5dc, #f4f0b2
-	MINT: 		#c7f9c9, #add8ae
-	CHOCOLATE:	#6b2c13, #592410
-	BUBBLEGUM:	#71d0ed, #68bed8
-	STRAWBERRY:	#f7a7a5, #e29998
-	RASPBERRY:	#f2a7da, #e59ecd
-	COFFEE:		#b5867b. #a57b70
-	LEMON:		#f8f9c5, #f2f4b5
-	CHERRY:		#f9989a, #dd898a
-	FUDGE:		#e8bb92, #ddb289
+.container_background {
+	background: #ededed;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	bottom: 10px;
+	left: 10px;
+	z-index: -1;
+}
+
+.container {
+	margin: 0 10px 10px 10px;
+}
+
+.panels_container {
+	display: flex;
+	/*background: rosybrown;*/
+}
+
+.left_panel, .right_panel {
+	margin: 20px;
+}
+
+.left_panel {
+	/*background: yellowgreen;*/
+	flex: 200px 0 0.5;
+	text-align: center;
+}
+
+.left_panel svg {
+	width: 100%;
+	min-width: 100px;
+}
+
+.right_panel {
+	/*background: orange;*/
+	background: #a3a3a3;
+	flex: 500px 1 1;
+	position: relative;
+}
+
+/* Right Panel Styles */
+.right_panel .info_box {
+	padding: 10px;
+	background: #ededed;
+	margin: 10px;
+}
+
+.right_panel .control_panel {
+	margin: 10px;
+}
+
+.right_panel .control_panel .options {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 20px;
+}
+
+.button.continue {
+	/*background: #ff0000;*/
+	background: #a9a9a9;
+	color: #fff;
+	position: absolute;
+	bottom: 10px;
+	right: 5px;
+	width: 20%;
+	min-width: 120px;
+	border: 0.5px solid #808080;
+	cursor: not-allowed;
+}
+
+/* 
+	Ice Cream Styles 
 */
+
+/* Scoops */
+.scoop, .bottom {
+	display: none;
+}
 
 .scoop.vanilla {
 	fill: #f7f5dc;
@@ -128,16 +177,8 @@ h1 {
 	fill: #e29998;
 }
 
-/*
-	Scoop Control
-*/
-.scoop, .bottom {
-	display: none;
-}
 
-/*
-	Sauce
-*/
+/* Sauce */
 .sauce {
 	opacity: 0.7;
 	stroke-width: 1.2px;
@@ -159,4 +200,9 @@ h1 {
 
 .sauce.fudge {
 	stroke: #fc7f02;
+}
+
+/* Sprinkles */
+.sprinkles {
+	display: none;
 }

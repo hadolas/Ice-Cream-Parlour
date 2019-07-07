@@ -5,8 +5,8 @@ var part = 1;
 
 // Right Panel content
 var info_box = document.querySelector(".info_box");
-var control_panel_options = document.querySelector(".control_panel_options");
-var done_button = document.querySelector(".done");
+var control_panel_options = document.querySelector(".control_panel .options");
+var continue_button = document.querySelector(".continue");
 
 // Available Flavours
 var scoop_flavours = ["vanilla", "mint", "chocolate", "bubblegum", "strawberry"];
@@ -78,7 +78,7 @@ control_panel_options.addEventListener("click", function(event) {
 
 // Clear the control_panel_options when 'Next'/'Done' button is clicked
 function clear_control_panel_options() {
-	var control_panel_options_buttons = document.querySelectorAll(".control_panel_options .button");
+	var control_panel_options_buttons = document.querySelectorAll(".control_panel .options .button");
 	var control_panel_options_buttons_length = control_panel_options_buttons.length;
 	for(var i=0; i<control_panel_options_buttons_length; i++) {
 		control_panel_options_buttons[i].parentNode.removeChild(control_panel_options_buttons[i]);
@@ -87,7 +87,7 @@ function clear_control_panel_options() {
 	select_part();
 }
 
-done_button.addEventListener("click", function() {
+continue_button.addEventListener("click", function() {
 	if(scoop_number<2) {
 		return;
 	} else {
@@ -99,7 +99,7 @@ done_button.addEventListener("click", function() {
 // PART SELECTION
 function select_part() {
 	if(part===1) {
-		info_box.textContent = "Welcome to <name>! Which scoops of ice cream would you like? Choose up to 3!";
+		info_box.textContent = "Hi there! Which scoops of ice cream would you like? (Choose up to 3!)";
 		for(var i=0; i<scoop_flavours_length; i++) {
 			var scoop_option = document.createElement("div");
 			scoop_option.classList.add("button");
@@ -124,3 +124,18 @@ function select_part() {
 		}
 	}
 }
+
+// ==============================
+
+// Set/Resize .container
+function resize() {
+	var container = document.querySelector(".container")
+	var screenHeight = window.innerHeight;
+	var container_top_position = container.getBoundingClientRect().top;
+	container.style.height = screenHeight-(container_top_position+10)+"px";	
+}
+
+resize();
+window.addEventListener("resize", function() {
+	resize()
+})
