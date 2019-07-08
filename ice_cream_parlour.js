@@ -9,7 +9,7 @@ var control_panel_options = document.querySelector(".control_panel .options");
 var continue_button = document.querySelector(".continue");
 
 // Available Flavours
-var scoop_flavours = ["vanilla", "mint", "chocolate", "bubblegum", "strawberry"];
+var scoop_flavours = ["vanilla", "mint", "chocolate", "bubblegum", "strawberry", "lemon"];
 var scoop_flavours_length = scoop_flavours.length;
 var sauce_flavours = ["chocolate", "strawberry", "raspberry", "fudge"];
 var sauce_flavours_length = sauce_flavours.length;
@@ -124,6 +124,7 @@ function select_part() {
 	if(part===1) {
 		info_box.textContent = "Hi there! Which scoops of ice cream would you like? (Choose up to 3!)";
 		continue_button.textContent = "Continue →";
+		// continue_button.style.cursor = "not-allowed";
 		for(var i=0; i<scoop_flavours_length; i++) {
 			var scoop_option = document.createElement("div");
 			scoop_option.classList.add("button");
@@ -157,10 +158,29 @@ function select_part() {
 
 // Set/Resize .container
 function resize() {
-	var container = document.querySelector(".container")
+	var container = document.querySelector(".container");
 	var screenHeight = window.innerHeight;
 	var container_top_position = container.getBoundingClientRect().top;
-	container.style.height = screenHeight-(container_top_position+10)+"px";	
+	container.style.height = screenHeight-(container_top_position+10)+"px";
+
+	// TEST STUFF
+	var h1 = document.querySelector("h1");
+	var right_panel = document.querySelector(".right_panel");
+	var background = document.querySelector(".background");
+	// console.log(right_panel.clientHeight + h1.clientHeight);
+	// container.style.height = right_panel.clientHeight + h1.clientHeight+"px";
+	// var container_height = right_panel.clientHeight + h1.clientHeight;
+	var container_height = right_panel.clientHeight + 20;
+	var scrollHeight = document.documentElement.scrollHeight;
+	// container.style.height = container_height + "px";
+	// container.style.height = right_panel.clientHeight + 20 + "px";
+	// background.style.height = container.style.height;
+	// background.style.height = container_height + h1.style.height + "px";
+	// background.style.height = document.documentElement.scrollHeight + "px";
+	background.style.height = scrollHeight + "px";
+	// container.style.height = container_height-10 + "px";
+	container.style.height = right_panel.clientHeight + 10 + "px";
+	// console.log(document.documentElement.scrollHeight);
 }
 
 resize();
@@ -187,4 +207,7 @@ function reset() {
 	scoop_2.classList = "scoop scoop_two top";
 	scoop_3.classList = "scoop scoop_three top";
 	sauce.classList = "sauce";
+	// continue_button.style.cursor = "not-allowed";
+	continue_button.style.cursor = "not-allowed";
+	continue_button.style.background = "#a9a9a9";
 }
