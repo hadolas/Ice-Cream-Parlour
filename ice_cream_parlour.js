@@ -22,6 +22,7 @@ function activate_continue_button() {
 	continue_button.style.cursor = "pointer";
 }
 
+// Deactivate 'Continue' Button
 function deactivate_continue_button() {
 	continue_button.style.background = "#a9a9a9";
 	continue_button.style.cursor = "not-allowed";
@@ -164,23 +165,14 @@ function resize() {
 	container.style.height = screenHeight-(container_top_position+10)+"px";
 
 	// TEST STUFF
-	var h1 = document.querySelector("h1");
 	var right_panel = document.querySelector(".right_panel");
 	var background = document.querySelector(".background");
-	// console.log(right_panel.clientHeight + h1.clientHeight);
-	// container.style.height = right_panel.clientHeight + h1.clientHeight+"px";
-	// var container_height = right_panel.clientHeight + h1.clientHeight;
+
 	var container_height = right_panel.clientHeight + 20;
 	var scrollHeight = document.documentElement.scrollHeight;
-	// container.style.height = container_height + "px";
-	// container.style.height = right_panel.clientHeight + 20 + "px";
-	// background.style.height = container.style.height;
-	// background.style.height = container_height + h1.style.height + "px";
-	// background.style.height = document.documentElement.scrollHeight + "px";
+	
 	background.style.height = scrollHeight + "px";
-	// container.style.height = container_height-10 + "px";
 	container.style.height = right_panel.clientHeight + 10 + "px";
-	// console.log(document.documentElement.scrollHeight);
 }
 
 resize();
@@ -201,13 +193,14 @@ function reset() {
 	scoop_3.style.display = "none";
 	scoop_3.nextElementSibling.style.display = "none";
 	sauce.style.display = "none";
+	sauce.style.transform = "translateY(0px)";
 	var sprinkles_group = document.querySelector(".sprinkles");
 	sprinkles_group.style.display = "none"
+	sprinkles_group.style.transform = "translateY(0px)";
 	scoop_1.classList = "scoop scoop_one top";
 	scoop_2.classList = "scoop scoop_two top";
 	scoop_3.classList = "scoop scoop_three top";
 	sauce.classList = "sauce";
-	// continue_button.style.cursor = "not-allowed";
 	continue_button.style.cursor = "not-allowed";
 	continue_button.style.background = "#a9a9a9";
 }

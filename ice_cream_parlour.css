@@ -5,7 +5,7 @@ body {
 	background: #ededed;
 }
 
-h1 {
+.heading {
 	font-family: 'Mystery Quest';
 	text-align: center;
 	margin: 0;
@@ -74,13 +74,11 @@ h1 {
 
 .container {
 	margin: 0 10px 10px 10px;
-	/*background: pink;*/
 	background: #ededed;
 }
 
 .panels_container {
 	display: flex;
-	/*background: rosybrown;*/
 }
 
 .left_panel, .right_panel {
@@ -88,7 +86,6 @@ h1 {
 }
 
 .left_panel {
-	/*background: yellowgreen;*/
 	flex: 200px 0 0.5;
 	text-align: center;
 }
@@ -99,7 +96,6 @@ h1 {
 }
 
 .right_panel {
-	/*background: orange;*/
 	background: #a3a3a3;
 	flex: 500px 1 1;
 	position: relative;
@@ -125,10 +121,6 @@ h1 {
 .button.continue {
 	background: #a9a9a9;
 	color: #fff;
-	/*position: absolute;*/
-	/*bottom: 10px;*/
-	/*right: 5px;*/
-	/*width: 100%;*/
 	min-width: 100px;
 	border: 0.5px solid #808080;
 	cursor: not-allowed;
@@ -167,7 +159,7 @@ h1 {
 }
 
 @media (max-width: 410px) {
-	h1 {
+	.heading {
 		font-size: 1.6em;
 	}
 }
