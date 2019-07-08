@@ -8,7 +8,7 @@ var info_box = document.querySelector(".info_box");
 var control_panel_options = document.querySelector(".control_panel .options");
 var continue_button = document.querySelector(".continue");
 
-// Available Flavours
+// Available Flavours/Options
 var scoop_flavours = ["vanilla", "mint", "chocolate", "bubblegum", "strawberry", "lemon"];
 var scoop_flavours_length = scoop_flavours.length;
 var sauce_flavours = ["chocolate", "strawberry", "raspberry", "fudge"];
@@ -54,10 +54,10 @@ control_panel_options.addEventListener("click", function(event) {
 			} else {
 				scoop_3.style.display = "inline";
 				scoop_3.nextElementSibling.style.display = "inline";
-				scoop_3.classList.add(picked_scoop.textContent);
-				// clear_control_panel_options();
+				scoop_3.classList.add(picked_scoop.textContent);	
 			}
 			scoop_number++
+
 		} else if (part===2) {
 			var picked_sauce = event.target;
 			sauce.style.display = "inline";
@@ -69,7 +69,7 @@ control_panel_options.addEventListener("click", function(event) {
 			}
 			sauce_complete = true;
 			activate_continue_button();
-			// clear_control_panel_options();	
+			
 		} else if (part===3) {
 			var picked_option = event.target;
 			if(picked_option.textContent==="Yes") {
@@ -107,11 +107,11 @@ function clear_control_panel_options() {
 	select_part();
 }
 
+// If 'Continue' is clicked, continue to the next part if rules are met
 continue_button.addEventListener("click", function() {
 	if((part===1&&scoop_number<2) || (part===2&&sauce_complete===false) || (part===3&&sprinkles_complete===false)) {
 		return;
-	} else if(continue_button.textContent==="Restart ↻") {
-		// console.log("Restart yay");
+	} else if(continue_button.textContent==="Yes please!") {
 		reset();
 		select_part();
 	} else{
@@ -123,9 +123,9 @@ continue_button.addEventListener("click", function() {
 // PART SELECTION
 function select_part() {
 	if(part===1) {
+		// if part===1, choose scoops
 		info_box.textContent = "Hi there! Which scoops of ice cream would you like? (Choose up to 3!)";
 		continue_button.textContent = "Continue →";
-		// continue_button.style.cursor = "not-allowed";
 		for(var i=0; i<scoop_flavours_length; i++) {
 			var scoop_option = document.createElement("div");
 			scoop_option.classList.add("button");
@@ -133,6 +133,7 @@ function select_part() {
 			control_panel_options.appendChild(scoop_option);
 		}
 	} else if(part===2) {
+		// if part===2, choose sauce
 		info_box.textContent = "Choose a sauce!";
 		for(var i=0; i<sauce_flavours_length; i++) {
 			var sauce_option = document.createElement("div");
@@ -141,6 +142,7 @@ function select_part() {
 			control_panel_options.appendChild(sauce_option);
 		}
 	} else if(part===3) {
+		// if part===3, want sprinkles?
 		info_box.textContent = "Top with sprinkles?";
 		for(var i=0; i<sprinkles_options_length; i++) {
 			var sprinkles_option = document.createElement("div");
@@ -149,22 +151,21 @@ function select_part() {
 			control_panel_options.appendChild(sprinkles_option);
 		}
 	} else if(part===4) {
-		info_box.textContent = "Yummy!";
-		continue_button.textContent = "Restart ↻";
+		// if part===4, want to restart?
+		info_box.textContent = "Yummy! Would you like another ice cream?";
+		continue_button.textContent = "Yes please!";
 		activate_continue_button();
 	}
 }
 
 // ==============================
 
-// Set/Resize .container
+// Set/Resize .container and .background
 function resize() {
 	var container = document.querySelector(".container");
 	var screenHeight = window.innerHeight;
 	var container_top_position = container.getBoundingClientRect().top;
-	container.style.height = screenHeight-(container_top_position+10)+"px";
 
-	// TEST STUFF
 	var right_panel = document.querySelector(".right_panel");
 	var background = document.querySelector(".background");
 
