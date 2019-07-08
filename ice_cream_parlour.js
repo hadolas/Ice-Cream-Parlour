@@ -16,9 +16,22 @@ var sauce_flavours_length = sauce_flavours.length;
 var sprinkles_options = ["Yes", "No"];
 var sprinkles_options_length = sprinkles_options.length;
 
+// Activate 'Continue' Button
+function activate_continue_button() {
+	continue_button.style.background = "#ff0000";
+	continue_button.style.cursor = "pointer";
+}
+
+function deactivate_continue_button() {
+	continue_button.style.background = "#a9a9a9";
+	continue_button.style.cursor = "not-allowed";
+}
+
 select_part();
 
 var scoop_number = 1;
+var sauce_complete = false;
+var sprinkles_complete = false;
 var scoop_1 = document.querySelector(".scoop_one");
 var scoop_2 = document.querySelector(".scoop_two");
 var scoop_3 = document.querySelector(".scoop_three");
@@ -32,6 +45,7 @@ control_panel_options.addEventListener("click", function(event) {
 				scoop_1.style.display = "inline";
 				scoop_1.nextElementSibling.style.display = "inline";
 				scoop_1.classList.add(picked_scoop.textContent);
+				activate_continue_button();
 			} else if(scoop_number===2) {
 				scoop_2.style.display = "inline";
 				scoop_2.nextElementSibling.style.display = "inline";
@@ -40,7 +54,7 @@ control_panel_options.addEventListener("click", function(event) {
 				scoop_3.style.display = "inline";
 				scoop_3.nextElementSibling.style.display = "inline";
 				scoop_3.classList.add(picked_scoop.textContent);
-				clear_control_panel_options();
+				// clear_control_panel_options();
 			}
 			scoop_number++
 		} else if (part===2) {
@@ -52,7 +66,9 @@ control_panel_options.addEventListener("click", function(event) {
 			} else if (scoop_number===3) {
 				sauce.style.transform = "translateY(17.5px)";
 			}
-			clear_control_panel_options();	
+			sauce_complete = true;
+			activate_continue_button();
+			// clear_control_panel_options();	
 		} else if (part===3) {
 			var picked_option = event.target;
 			if(picked_option.textContent==="Yes") {
@@ -72,6 +88,8 @@ control_panel_options.addEventListener("click", function(event) {
 			} else if (picked_option.textContent==="No") {
 				console.log("No sprinkles :(")
 			}
+			sprinkles_complete = true;
+			activate_continue_button();
 		}
 	}
 });
@@ -84,13 +102,18 @@ function clear_control_panel_options() {
 		control_panel_options_buttons[i].parentNode.removeChild(control_panel_options_buttons[i]);
 	}
 	part+=1;
+	deactivate_continue_button()
 	select_part();
 }
 
 continue_button.addEventListener("click", function() {
-	if(scoop_number<2) {
+	if((part===1&&scoop_number<2) || (part===2&&sauce_complete===false) || (part===3&&sprinkles_complete===false)) {
 		return;
-	} else {
+	} else if(continue_button.textContent==="Restart ↻") {
+		// console.log("Restart yay");
+		reset();
+		select_part();
+	} else{
 		clear_control_panel_options();
 	}
 });
@@ -100,6 +123,7 @@ continue_button.addEventListener("click", function() {
 function select_part() {
 	if(part===1) {
 		info_box.textContent = "Hi there! Which scoops of ice cream would you like? (Choose up to 3!)";
+		continue_button.textContent = "Continue →";
 		for(var i=0; i<scoop_flavours_length; i++) {
 			var scoop_option = document.createElement("div");
 			scoop_option.classList.add("button");
@@ -122,6 +146,10 @@ function select_part() {
 			sprinkles_option.textContent = sprinkles_options[i];
 			control_panel_options.appendChild(sprinkles_option);
 		}
+	} else if(part===4) {
+		info_box.textContent = "Yummy!";
+		continue_button.textContent = "Restart ↻";
+		activate_continue_button();
 	}
 }
 
@@ -139,3 +167,21 @@ resize();
 window.addEventListener("resize", function() {
 	resize()
 })
+
+// Reset variables
+function reset() {
+	part=1;
+	scoop_number = 1;
+	sauce_complete = false;	
+	sprinkles_complete = false;
+	scoop_1.style.display = "none";
+	scoop_1.nextElementSibling.style.display = "none";
+	scoop_2.style.display = "none";
+	scoop_2.nextElementSibling.style.display = "none";
+	scoop_3.style.display = "none";
+	scoop_3.nextElementSibling.style.display = "none";
+	sauce.style.display = "none";
+	sprinkles_group
+	var sprinkles_group = document.querySelector(".sprinkles");
+	sprinkles_group.style.display = "none"
+}
