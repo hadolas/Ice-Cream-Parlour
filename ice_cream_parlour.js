@@ -181,7 +181,10 @@ function reset() {
 	scoop_3.style.display = "none";
 	scoop_3.nextElementSibling.style.display = "none";
 	sauce.style.display = "none";
-	sprinkles_group
 	var sprinkles_group = document.querySelector(".sprinkles");
 	sprinkles_group.style.display = "none"
+	scoop_1.classList = "scoop scoop_one top";
+	scoop_2.classList = "scoop scoop_two top";
+	scoop_3.classList = "scoop scoop_three top";
+	sauce.classList = "sauce";
 }
